@@ -13,25 +13,14 @@ import {
 import { Content } from '../components/Content'
 import { content } from '../constants'
 import { Contact } from '../components/Contact'
+import { FaDownload } from 'react-icons/fa'
+
+const RESUME_PATH = '/resume/Kalanjiya Vishnu J — Resume.pdf'
 
 export default function Home() {
   return (
-    <div className="h-screen">
-      <Rocket />
-      <main className="w-4/5 m-auto pt-20 h-full flex items-center justify-center z-50">
-        <div className="flex  flex-col p-2 justify-center w-fit -mt-20">
-          <p className="text-2xl md:text-6xl font-medium">
-            `Developer,Youtuber`
-          </p>
-          <p className="text-sm text-end font-normal">-Yes i&apos;m</p>
-          <a
-            href="#me"
-            className="btn-flip"
-            data-back="ME"
-            data-front="About"
-          ></a>
-        </div>
-      </main>
+    <div>
+      <Hero />
       <Me />
       <Skills />
       <Projects />
@@ -41,33 +30,81 @@ export default function Home() {
   )
 }
 
+const Hero = () => (
+  <div className="relative h-screen overflow-hidden">
+    <Rocket />
+    <main
+      id="hero"
+      className="w-4/5 m-auto h-full flex items-center justify-center z-10 relative"
+    >
+      <div className="flex flex-col p-2 justify-center w-fit -mt-20 gap-4">
+        <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+          Full-stack Engineer
+        </p>
+        <p className="text-2xl md:text-6xl font-medium leading-tight">
+          Developer,{' '}
+          <span className="relative group inline-block">
+            <span className="line-through opacity-30 decoration-gray-500">
+              YouTuber
+            </span>
+            <span className="absolute -top-5 left-0 text-[10px] uppercase tracking-widest text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-normal pointer-events-none">
+              formerly
+            </span>
+          </span>
+        </p>
+        <p className="text-sm font-normal text-gray-400">
+          — Chennai, India &middot; 3+ years in production
+        </p>
+        <div className="flex items-center gap-3 mt-2">
+          <a
+            href="#about"
+            className="btn-flip"
+            data-back="ME"
+            data-front="About"
+          />
+          <a
+            href={RESUME_PATH}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-500 hover:text-gray-800 transition-colors duration-150 border border-gray-300 rounded px-4 py-2"
+          >
+            <FaDownload className="w-3 h-3" />
+            Resume
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+)
+
 const Me = () => {
   return (
     <div
-      className="bg-neutral-900 border-t-2 border-white borde text-white h-auto p-16 relative"
-      id="me"
+      id="about"
+      className="bg-neutral-900 border-t-2 border-white text-white h-auto p-16 relative"
     >
-      {/* <div className="w-full bg-white h-[2px] absolute top-0 left-0"></div> */}
-      <Title title="Kalanjiya Vishnu .J" float="right">
-        <p className="text-xs md:text-sm  font-normal flex-nowrap">
-          A full stack developer, building things for web.
+      <Title title="Vishnu J" float="right">
+        <p className="text-xs md:text-sm font-normal flex-nowrap text-gray-400">
+          Full-stack engineer. Ships production backend and frontend systems.
+          Based in Chennai.
         </p>
       </Title>
       <TimeLine />
     </div>
   )
 }
+
 const TimeLine = () => (
   <>
-    <div className="text-sm rounded-sm md:ml-2 mt-3 py-2 px-10  text-center sm:text-left border-l-2 border-r-2 sm:border-r-0  border-gray-200">
-      Things i did in the past . . .
+    <div className="text-sm rounded-sm md:ml-2 mt-3 py-2 px-10 text-center sm:text-left border-l-2 border-r-2 sm:border-r-0 border-gray-200">
+      A few things that happened along the way...
     </div>
     <Stepper timeLines={getTimeLines()} />
   </>
 )
 
 const Rocket = () => (
-  <div className="absolute top-40 -left-64  xl:block xl:top-40 xl:-left-40 opacity-85">
+  <div className="absolute top-40 -left-64 xl:block xl:top-40 xl:-left-40 opacity-85 pointer-events-none select-none">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="#222"
@@ -80,7 +117,7 @@ const Rocket = () => (
 )
 
 const Projects = () => (
-  <div className="bg-neutral-900 border-t h-max text-white ">
+  <div id="projects" className="bg-neutral-900 border-t h-max text-white">
     <div className="p-16">
       <Title title="Things I've built" float="left" />
       <ProjectsContainer />
@@ -89,7 +126,7 @@ const Projects = () => (
 )
 
 const ProjectsContainer = () => {
-  const renderProject: (p: Project) => JSX.Element = (p) => {
+  const renderProject = (p: Project) => {
     const projectImages = getProjectImages(p.title)
     return (
       <div
@@ -98,15 +135,12 @@ const ProjectsContainer = () => {
       >
         <div className="p-2 flex flex-col justify-between">
           <div>
-            <p className="text-xs">{p.category.join(' ')}</p>
-            <h1 className="text-4xl font-medium relative">
-              {p.title}{' '}
-              {/* <div className="absolute top-1/2 -translate-y-1/2 left-[43%] w-full h-1 bg-white"></div> */}
-            </h1>
+            <p className="text-xs">{p.category.join(' · ')}</p>
+            <h1 className="text-4xl font-medium relative">{p.title}</h1>
             <p className="text-sm mt-4 px-4 border-teal-300 border-l-4">
               {p.description}
             </p>
-            <div className="flex justify-end px-8">
+            <div className="flex justify-end px-8 mt-3">
               {p.links.map((link, idx) => (
                 <a
                   href={link.ref}
@@ -114,7 +148,7 @@ const ProjectsContainer = () => {
                   target="_blank"
                   key={`${p.title}-${idx}`}
                 >
-                  <div className="w-8 p-2 fill-slate-100 hover:fill-slate-200 hover:opacity-90 opacity-70 transition-all transform duration-150">
+                  <div className="w-8 p-2 text-slate-300 hover:text-white hover:opacity-90 opacity-60 transition-all transform duration-150">
                     {getSrcIcon(link.type)}
                   </div>
                 </a>
@@ -130,11 +164,9 @@ const ProjectsContainer = () => {
     )
   }
   return (
-    <>
-      <div className="flex flex-col gap-4 mt-10 h-screen">
-        {getProjects().map(renderProject)}
-      </div>
-    </>
+    <div className="flex flex-col gap-4 mt-10">
+      {getProjects().map(renderProject)}
+    </div>
   )
 }
 
@@ -144,14 +176,14 @@ const Slider = ({ images }: { id: number; images: string[] }) => {
   const sliderRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const interval = setInterval(moveToNextSlid, 2000)
+    const interval = setInterval(moveToNextSlide, 2000)
     return () => clearInterval(interval)
   }, [id])
 
-  const getWithd = () =>
+  const getWidth = () =>
     sliderRef.current ? sliderRef.current.clientWidth : 100
 
-  const moveToNextSlid = () => {
+  const moveToNextSlide = () => {
     if (id === images.length - 2) {
       setIsIncrement(false)
     } else if (id === 0) {
@@ -159,16 +191,15 @@ const Slider = ({ images }: { id: number; images: string[] }) => {
     }
     setId(isIncrement ? id + 1 : id - 1)
   }
+
   return (
     <div
-      className={`rounded-md shadow-md overflow-hidden border-white border-2 border-opacity-10 opacity-70 hover:opacity-90  transition-opacity transform duration-300 ease-in-out w-[${getWithd()}px] h-auto`}
+      className="rounded-md shadow-md overflow-hidden border-white border-2 border-opacity-10 opacity-70 hover:opacity-90 transition-opacity transform duration-300 ease-in-out"
       ref={sliderRef}
     >
       <div
-        style={{
-          transform: `translateX(-${id * getWithd()}px)`,
-        }}
-        className={`flex  transform-gpu transition-all duration-1000`}
+        style={{ transform: `translateX(-${id * getWidth()}px)` }}
+        className="flex transform-gpu transition-all duration-1000"
       >
         {images.map((src, idx) => (
           <Image
