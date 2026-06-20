@@ -101,6 +101,25 @@
     background-color: rgba(255, 255, 255, 0.08);
 }
 
+/* Icon-only nav links (desktop) */
+.navIconLink {
+    color: rgb(140, 140, 140);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--nav-size) * 0.46);
+    height: calc(var(--nav-size) * 0.46);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.navIconLink:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
 /* Mobile menu */
 .mobileMenu {
     position: relative;
@@ -157,10 +176,48 @@
     text-decoration: none;
     font-size: 0.85rem;
     transition: background-color 0.15s ease, color 0.15s ease;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
 }
 
 .dropdownItem:hover {
     background-color: rgba(255, 255, 255, 0.08);
     color: white;
+}
+
+.dropdownIcon {
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+/* Current section title — centered in nav bar */
+.sectionTitle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.38);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.sectionTitleVisible {
+    animation: sectionFadeIn 0.4s ease forwards;
+}
+
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }

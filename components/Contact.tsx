@@ -1,8 +1,5 @@
 import NextLink from 'next/link'
-import { FaDownload } from 'react-icons/fa'
 import { getSrcIcon, Link } from '../utils'
-
-const RESUME_PATH = '/resume/Kalanjiya Vishnu J — Resume.pdf'
 
 const contactVia: Link[] = [
   {
@@ -34,33 +31,29 @@ export const Contact = () => {
         rel="noreferrer"
         className="font-medium font-sans underline hover:no-underline flex-1 text-1xl"
       >
-        <span className="font-medium capitalize">{type === 'gmail' ? 'Email' : type}</span>
+        <span className="font-medium capitalize">
+          {type === 'gmail' ? 'Email' : type}
+        </span>
       </NextLink>
     </div>
   )
 
   return (
-    <div id="contact" className="p-16">
-      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl sm:items-end sm:text-end">
-        So, Reach Out!
-      </h2>
-      <hr className="my-4" />
-      <div className="mt-6 font-sans text-gray-600">
-        Have an idea that needs a collaborator? Or just want to say hi? I&apos;m available across these platforms — pick your preference.
+    <div id="contact">
+      <div className="sticky top-[60px] z-10 bg-gray-100 px-16 pt-16 pb-4">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl sm:items-end sm:text-end">
+          So, Reach Out!
+        </h2>
+        <hr className="mt-4" />
       </div>
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-3 w-full">
-        {contactVia.map(renderBlock)}
-      </div>
-      <div className="mt-10 flex justify-end">
-        <a
-          href={RESUME_PATH}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-gray-500 hover:text-gray-900 transition-colors duration-150 border border-gray-300 rounded px-4 py-2"
-        >
-          <FaDownload className="w-3 h-3" />
-          Download Resume (PDF)
-        </a>
+      <div className="px-16 pb-24 pt-6">
+        <div className="font-sans text-gray-600 mb-6">
+          Have an idea that needs a collaborator? Or just want to say hi? I&apos;m
+          available across these platforms — pick your preference.
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-3 w-full">
+          {contactVia.map(renderBlock)}
+        </div>
       </div>
     </div>
   )

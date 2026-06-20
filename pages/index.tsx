@@ -20,6 +20,7 @@ const RESUME_PATH = '/resume/Kalanjiya Vishnu J — Resume.pdf'
 export default function Home() {
   return (
     <div>
+      <FloatingResume />
       <Hero />
       <Me />
       <Skills />
@@ -27,6 +28,39 @@ export default function Home() {
       <Content {...content['SectionWhatDoIDO']} />
       <Contact />
     </div>
+  )
+}
+
+/** Fixed resume button — floats into view only when the Reach Out section is visible */
+const FloatingResume = () => {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const contact = document.getElementById('contact')
+    if (!contact) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.05 }
+    )
+    observer.observe(contact)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <a
+      href={RESUME_PATH}
+      target="_blank"
+      rel="noreferrer"
+      className={`fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-neutral-800 text-white text-xs uppercase tracking-widest px-5 py-3 rounded-full shadow-xl transition-all duration-300 ease-out ${
+        visible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-4 pointer-events-none'
+      }`}
+    >
+      <FaDownload className="w-3 h-3" />
+      Resume
+    </a>
   )
 }
 
@@ -55,44 +89,34 @@ const Hero = () => (
         <p className="text-sm font-normal text-gray-400">
           — Chennai, India &middot; 3+ years in production
         </p>
-        <div className="flex items-center gap-3 mt-2">
+        <div className="mt-2">
           <a
             href="#about"
             className="btn-flip"
             data-back="ME"
             data-front="About"
           />
-          <a
-            href={RESUME_PATH}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-500 hover:text-gray-800 transition-colors duration-150 border border-gray-300 rounded px-4 py-2"
-          >
-            <FaDownload className="w-3 h-3" />
-            Resume
-          </a>
         </div>
       </div>
     </main>
   </div>
 )
 
-const Me = () => {
-  return (
-    <div
-      id="about"
-      className="bg-neutral-900 border-t-2 border-white text-white h-auto p-16 relative"
-    >
+const Me = () => (
+  <div id="about" className="bg-neutral-900 border-t-2 border-white text-white">
+    <div className="sticky top-[60px] z-10 bg-neutral-900 px-16 pt-16 pb-4">
       <Title title="Vishnu J" float="right">
         <p className="text-xs md:text-sm font-normal flex-nowrap text-gray-400">
           Full-stack engineer. Ships production backend and frontend systems.
           Based in Chennai.
         </p>
       </Title>
+    </div>
+    <div className="px-16 pb-16">
       <TimeLine />
     </div>
-  )
-}
+  </div>
+)
 
 const TimeLine = () => (
   <>
@@ -117,9 +141,11 @@ const Rocket = () => (
 )
 
 const Projects = () => (
-  <div id="projects" className="bg-neutral-900 border-t h-max text-white">
-    <div className="p-16">
+  <div id="projects" className="bg-neutral-900 border-t text-white">
+    <div className="sticky top-[60px] z-10 bg-neutral-900 px-16 pt-16 pb-4">
       <Title title="Things I've built" float="left" />
+    </div>
+    <div className="px-16 pb-16">
       <ProjectsContainer />
     </div>
   </div>

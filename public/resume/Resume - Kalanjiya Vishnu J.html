@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kalanjiya Vishnu J — Resume</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --ink: #1b1d21;
+                --muted: #4a4f57;
+                --faint: #6b7178;
+                --accent: oklch(
+                    0.42 0.055 250
+                ); /* deep slate-navy, low chroma — prints clean */
+                --rule: #d7dadf;
+                --page-w: 8.5in;
+                --page-h: 11in;
+                --pad-x: 0.62in;
+                --pad-y: 0.42in;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background: #e7e9ec;
+                font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif;
+                color: var(--ink);
+                -webkit-font-smoothing: antialiased;
+                text-rendering: optimizeLegibility;
+                padding: 28px 0;
+            }
+
+            .page {
+                width: var(--page-w);
+                min-height: var(--page-h);
+                margin: 0 auto;
+                background: #fff;
+                padding: var(--pad-y) var(--pad-x);
+                box-shadow: 0 6px 30px rgba(20, 24, 33, 0.14);
+                /* tuned for one-page fit */
+                font-size: 9.7pt;
+                line-height: 1.26;
+            }
+
+            /* ---------- Header ---------- */
+            header {
+                margin-bottom: 11px;
+            }
+
+            .name {
+                font-size: 23pt;
+                font-weight: 700;
+                letter-spacing: 0.01em;
+                color: var(--accent);
+                margin: 0 0 5px;
+                line-height: 1.04;
+            }
+
+            .contact {
+                font-size: 9.4pt;
+                color: var(--muted);
+                line-height: 1.5;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 0 9px;
+            }
+            .contact .sep {
+                color: var(--rule);
+                font-weight: 400;
+            }
+            .contact a {
+                color: var(--accent);
+                text-decoration: none;
+            }
+            .contact a:hover {
+                text-decoration: underline;
+            }
+
+            /* ---------- Sections ---------- */
+            section {
+                margin-top: 9px;
+            }
+
+            h2 {
+                font-size: 10.2pt;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                color: var(--ink);
+                margin: 0 0 6px;
+                padding-bottom: 3px;
+                border-bottom: 1.5px solid var(--accent);
+            }
+
+            .summary {
+                margin: 0;
+                color: var(--muted);
+                line-height: 1.32;
+            }
+            .summary strong {
+                color: var(--ink);
+                font-weight: 600;
+            }
+
+            /* ---------- Experience ---------- */
+            .role {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 12px;
+            }
+            .role-left {
+                font-weight: 600;
+            }
+            .company {
+                color: var(--ink);
+            }
+            .title {
+                color: var(--accent);
+                font-weight: 600;
+            }
+            .role-meta {
+                color: var(--faint);
+                font-size: 9.3pt;
+                font-weight: 500;
+                white-space: nowrap;
+            }
+
+            ul.bullets {
+                margin: 6px 0 0;
+                padding: 0;
+                list-style: none;
+            }
+            ul.bullets li {
+                position: relative;
+                padding-left: 14px;
+                margin-bottom: 3px;
+                color: var(--muted);
+                line-height: 1.3;
+            }
+            ul.bullets li::before {
+                content: "\2022";
+                position: absolute;
+                left: 0;
+                top: 0;
+                color: var(--accent);
+                font-size: 1.05em;
+                line-height: inherit;
+            }
+            ul.bullets li b {
+                color: var(--ink);
+                font-weight: 600;
+            }
+            .lead {
+                color: var(--ink);
+                font-weight: 600;
+            }
+
+            .stack {
+                font-family: "IBM Plex Mono", ui-monospace, monospace;
+                font-size: 8pt;
+                color: oklch(0.62 0.03 250);
+                letter-spacing: -0.01em;
+            }
+            .stack .chev {
+                color: var(--rule);
+                margin: 0 5px 0 3px;
+                font-weight: 500;
+            }
+            .stack .dot {
+                color: var(--rule);
+                margin: 0 1px;
+            }
+
+            /* ---------- Education ---------- */
+            .edu-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 12px;
+            }
+            .edu-row .deg {
+                font-weight: 600;
+                color: var(--ink);
+            }
+            .edu-row .school {
+                color: var(--muted);
+            }
+
+            /* ---------- Skills ---------- */
+            .skills {
+                display: grid;
+                gap: 5px;
+            }
+            .skill-line {
+                display: flex;
+                gap: 10px;
+                line-height: 1.34;
+            }
+            .skill-line .cat {
+                flex: 0 0 132px;
+                font-weight: 600;
+                color: var(--ink);
+            }
+            .skill-line .val {
+                flex: 1;
+                color: var(--muted);
+            }
+
+            /* ---------- Print ---------- */
+            @page {
+                size: Letter;
+                margin: 0;
+            }
+            @media print {
+                body {
+                    background: #fff;
+                    padding: 0;
+                }
+                .page {
+                    box-shadow: none;
+                    margin: 0;
+                    width: auto;
+                    min-height: auto;
+                }
+                a {
+                    color: var(--accent) !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page" data-screen-label="Resume">
+            <header>
+                <h1 class="name">Kalanjiya Vishnu J</h1>
+                <div class="contact">
+                    <span>Chennai, India</span>
+                    <span class="sep">|</span>
+                    <a href="mailto:kalanjiya.vishnu01@gmail.com"
+                        ><span class="__cf_email__"
+                            >kalanjiya.vishnu01@gmail.com</span
+                        ></a
+                    >
+                    <span class="sep">|</span>
+                    <span>+91 63852 04639</span>
+                    <span class="sep">|</span>
+                    <a href="https://www.linkedin.com/in/kalanjiyaVishnu"
+                        >linkedin.com/in/kalanjiyaVishnu</a
+                    >
+                    <span class="sep">|</span>
+                    <a href="https://github.com/kalanjiyaVishnu"
+                        >github.com/kalanjiyaVishnu</a
+                    >
+                    <span class="sep">|</span>
+                    <a href="https://vishnuj.vercel.app">vishnuj.vercel.app</a>
+                </div>
+            </header>
+
+            <section>
+                <h2>Summary</h2>
+                <p class="summary">
+                    <strong>Full-Stack Software Engineer</strong> with 3+ years
+                    shipping production backend and frontend systems for a
+                    multi-tenant retail CRM SaaS. Core stack is
+                    <strong>Node.js / TypeScript</strong> and
+                    <strong>React / Next.js</strong>, with hands-on production
+                    experience in event-driven
+                    <strong>distributed systems</strong> (Kafka, Spark,
+                    ClickHouse, Elasticsearch),
+                    <strong>serverless microservices</strong> on AWS, and
+                    <strong>multi-tenant data isolation</strong> at scale.
+                    Consistently ships with 90&ndash;95% test coverage gated in
+                    <strong>CI/CD</strong>. Side projects include a full-stack
+                    collaborative diffing workbench and an offline PWA puzzle
+                    game with backtracking solvers.
+                </p>
+            </section>
+
+            <section>
+                <h2>Experience</h2>
+                <div class="role">
+                    <div class="role-left">
+                        <span class="company">Casa Retail AI</span> &mdash;
+                        <span class="title">Software Engineer</span>
+                    </div>
+                    <div class="role-meta">Aug 2022 &ndash; Present</div>
+                </div>
+                <ul class="bullets">
+                    <li>
+                        <span class="lead"
+                            >Designed and shipped a distributed multi-tenant
+                            onboarding platform</span
+                        >
+                        using Flowable BPM command-pattern orchestration for
+                        hybrid automated / human-approval workflows,
+                        <b>cutting merchant onboarding effort 90%</b>; surfaced
+                        real-time workflow state in event-driven dashboards used
+                        by support operations.
+                        <span class="stack"
+                            ><span class="chev">&rsaquo;</span>Node.js<span
+                                class="dot"
+                                >&middot;</span
+                            >React<span class="dot">&middot;</span>Flowable
+                            BPM<span class="dot">&middot;</span>Jest<span
+                                class="dot"
+                                >&middot;</span
+                            >Mocha</span
+                        >
+                    </li>
+                    <li>
+                        <span class="lead"
+                            >Built and maintained core multi-tenant backend
+                            services for a loyalty &amp; promotions engine</span
+                        >
+                        &mdash; bill processing, points earn/redeem, cohort
+                        segmentation, and campaign execution on a shared
+                        platform; extended ClickHouse OLAP pipelines and
+                        Elasticsearch indices for real-time campaign and
+                        customer-segment analytics.
+                        <span class="stack"
+                            ><span class="chev">&rsaquo;</span>Node.js<span
+                                class="dot"
+                                >&middot;</span
+                            >TypeScript<span class="dot">&middot;</span
+                            >Express<span class="dot">&middot;</span
+                            >Sequelize<span class="dot">&middot;</span
+                            >PostgreSQL<span class="dot">&middot;</span
+                            >ClickHouse<span class="dot">&middot;</span
+                            >Elasticsearch<span class="dot">&middot;</span
+                            >Redis<span class="dot">&middot;</span>Docker<span
+                                class="dot"
+                                >&middot;</span
+                            >Kubernetes</span
+                        >
+                    </li>
+                    <li>
+                        <span class="lead"
+                            >Engineered a multi-source event-streaming ingestion
+                            pipeline</span
+                        >
+                        (Kafka topics, flat files, database CDC) using
+                        schema-driven transformers and batched ClickHouse
+                        writes,
+                        <b
+                            >processing millions of events/day at sub-second
+                            latency</b
+                        >
+                        for real-time retail analytics across tenants.
+                        <span class="stack"
+                            ><span class="chev">&rsaquo;</span>Apache Kafka<span
+                                class="dot"
+                                >&middot;</span
+                            >Node.js<span class="dot">&middot;</span
+                            >ClickHouse<span class="dot">&middot;</span
+                            >PostgreSQL</span
+                        >
+                    </li>
+                    <li>
+                        <span class="lead"
+                            >Designed and shipped a full-stack embedded Shopify
+                            commerce app</span
+                        >
+                        (Remix + Shopify GraphQL Admin API) bidirectionally
+                        syncing customer, catalog, and order data into the CRM;
+                        implemented OAuth 2.0 / OIDC customer login via Keycloak
+                        for a branded commerce portal with e-commerce analytics
+                        dashboards.
+                        <span class="stack"
+                            ><span class="chev">&rsaquo;</span>Remix<span
+                                class="dot"
+                                >&middot;</span
+                            >TypeScript<span class="dot">&middot;</span
+                            >Prisma<span class="dot">&middot;</span>Shopify
+                            GraphQL Admin API<span class="dot">&middot;</span
+                            >Keycloak (OIDC)</span
+                        >
+                    </li>
+                    <li>
+                        <span class="lead"
+                            >Architected serverless microservices</span
+                        >
+                        (AWS Lambda + SQS + S3) automating AR template
+                        generation and deployment for a no-code AR platform,
+                        <b>reducing deployment time 50%</b>; enforced TDD with
+                        <b>95% coverage</b> gated in GitHub Actions CI/CD.
+                        <span class="stack"
+                            ><span class="chev">&rsaquo;</span>Node.js<span
+                                class="dot"
+                                >&middot;</span
+                            >AWS Lambda<span class="dot">&middot;</span>S3<span
+                                class="dot"
+                                >&middot;</span
+                            >SQS<span class="dot">&middot;</span>GitHub
+                            Actions<span class="dot">&middot;</span>Jest<span
+                                class="dot"
+                                >&middot;</span
+                            >Mocha</span
+                        >
+                    </li>
+                    <li>
+                        <span class="lead"
+                            >Engineered a React 18 drag-and-drop e-bill
+                            configurator</span
+                        >
+                        with runtime schema-driven layout and Zod validation,
+                        <b>reducing merchant configuration effort 70%</b>;
+                        shipped <b>30+ MUI components</b> to an internal
+                        Storybook design system, increasing team velocity
+                        <b>40%</b> and component reuse <b>60%</b>.
+                        <span class="stack"
+                            ><span class="chev">&rsaquo;</span>React 18<span
+                                class="dot"
+                                >&middot;</span
+                            >TypeScript<span class="dot">&middot;</span
+                            >react-hook-form<span class="dot">&middot;</span
+                            >Zod<span class="dot">&middot;</span>MUI<span
+                                class="dot"
+                                >&middot;</span
+                            >Storybook<span class="dot">&middot;</span
+                            >Rollup</span
+                        >
+                    </li>
+                    <li>
+                        <span class="lead"
+                            >Built a webhook-driven lead-ingestion service</span
+                        >
+                        capturing, validating, and routing Meta Ads leads in
+                        real time across the CRM pipeline; integrated Meta Ads
+                        &amp; Google Ads APIs into conversion dashboards,
+                        closing marketing attribution from ad impression to
+                        customer record.
+                        <span class="stack"
+                            ><span class="chev">&rsaquo;</span>Node.js<span
+                                class="dot"
+                                >&middot;</span
+                            >Meta Ads API<span class="dot">&middot;</span>Google
+                            Ads API</span
+                        >
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Skills</h2>
+                <div class="skills">
+                    <div class="skill-line">
+                        <span class="cat">Languages</span
+                        ><span class="val"
+                            >TypeScript, JavaScript (ES6+), Python, Java, Scala,
+                            SQL</span
+                        >
+                    </div>
+                    <div class="skill-line">
+                        <span class="cat">Backend</span
+                        ><span class="val"
+                            >Node.js, Express, NestJS, GraphQL, REST APIs,
+                            WebSockets, Sequelize, Prisma, Zod, jose (JWT)</span
+                        >
+                    </div>
+                    <div class="skill-line">
+                        <span class="cat">Frontend</span
+                        ><span class="val"
+                            >React, Next.js (App Router), Remix, Material UI,
+                            Radix UI, Tailwind CSS, TanStack Query, React Flow,
+                            Storybook</span
+                        >
+                    </div>
+                    <div class="skill-line">
+                        <span class="cat">Data &amp; Streaming</span
+                        ><span class="val"
+                            >PostgreSQL, ClickHouse, Elasticsearch, Redis,
+                            MySQL, Apache Kafka, Apache Spark</span
+                        >
+                    </div>
+                    <div class="skill-line">
+                        <span class="cat">Cloud &amp; DevOps</span
+                        ><span class="val"
+                            >AWS (Lambda, S3, SQS, SES), Azure, GCP, Docker,
+                            Kubernetes, CI/CD</span
+                        >
+                    </div>
+                    <div class="skill-line">
+                        <span class="cat">Practices &amp; Tools</span
+                        ><span class="val"
+                            >Git, GitHub Actions, Agile / Scrum, System Design,
+                            TDD, PWA / Service Workers, Canvas API, Jest, Mocha,
+                            Vite</span
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Education</h2>
+                <div class="edu-row">
+                    <div>
+                        <span class="deg"
+                            >B.E. in Computer Science &amp; Engineering</span
+                        >
+                        &mdash;
+                        <span class="school">Kongu Engineering College</span>
+                    </div>
+                    <div class="role-meta">
+                        Erode, India &nbsp;|&nbsp; 2023 &nbsp;|&nbsp; CGPA
+                        9.56/10
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script
+            data-cfasync="false"
+            src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+        ></script>
+    </body>
+</html>
