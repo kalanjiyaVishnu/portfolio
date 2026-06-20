@@ -1,10 +1,6 @@
 export const content = {
   SectionWhatDoIDO: {
     head: 'Well, What do I do?',
-    body: `I'm a software dev, specifically a full stack engineer (have a degree
-        too, in a corner around my house). Love trying out new
-        technologies/languages!. Started a few ton of side projects that i'am
-        sure i will finish all of em. In the learning period, hoping i would
-        become an expert, near future. And i'm the batman in nights.`,
+    body: `Full-stack engineer by day, side-project hoarder by night. I have a CS degree (framed, somewhere). I love picking up new languages and technologies — which is how I end up with more half-finished projects than I care to admit. Currently shipping production backend services and React frontends at scale. Occasionally the batman after hours.`,
   },
 }
