@@ -23,6 +23,7 @@ export default function Home() {
       <FloatingResume />
       <Hero />
       <div className="relative">
+        <WaveTop />
         {/* Sticky 'Vishnu J' sub-header */}
         <div className="sticky top-0 z-20 bg-neutral-900 px-6 md:px-16 py-3 border-b border-white border-opacity-10 w-full text-white">
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-end gap-1">
@@ -112,7 +113,6 @@ const Hero = () => (
 
 const Me = () => (
   <div id="about" className="text-white">
-    <WaveTop />
     <div className="bg-neutral-900 px-6 md:px-16 py-10">
       <TimeLine />
     </div>
