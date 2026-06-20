@@ -1,5 +1,6 @@
 import NextLink from 'next/link'
 import { getSrcIcon, Link } from '../utils'
+import { WaveTop } from './Wave'
 
 const contactVia: Link[] = [
   {
@@ -18,38 +19,37 @@ const contactVia: Link[] = [
 
 export const Contact = () => {
   const renderBlock = ({ ref, type }: Link) => (
-    <div
+    <NextLink
+      href={ref}
+      target={type === 'gmail' ? '_self' : '_blank'}
+      rel="noreferrer"
       key={type}
-      className="bg-neutral-800 text-white rounded-md border border-neutral-700 border-opacity-10 p-1 flex text-center items-center overflow-hidden hover:-translate-y-1 transition-all transform duration-150 ease-in-out drop-shadow-sm"
+      className="group flex items-center justify-center gap-3 bg-neutral-800 hover:bg-neutral-750 text-neutral-300 hover:text-white border border-neutral-700 border-opacity-10 px-6 py-4 rounded-lg transition-all duration-300 ease-out shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
     >
-      <div className="w-10 text-white hover:text-slate-200 hover:opacity-90 opacity-70 transition-all transform duration-150 -translate-x-2 translate-y-2">
+      <div className="w-5 h-5 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 flex items-center justify-center">
         {getSrcIcon(type)}
       </div>
-      <NextLink
-        href={ref}
-        target={type === 'gmail' ? '_self' : '_blank'}
-        rel="noreferrer"
-        className="font-medium font-sans underline hover:no-underline flex-1 text-1xl"
-      >
-        <span className="font-medium capitalize">
-          {type === 'gmail' ? 'Email' : type}
-        </span>
-      </NextLink>
-    </div>
+      <span className="text-sm font-medium tracking-wide uppercase font-sans">
+        {type === 'gmail' ? 'Email' : type}
+      </span>
+    </NextLink>
   )
 
   return (
-    <div id="contact" className="pt-14">
-      <div className="sticky top-0 z-10 bg-gray-100 px-16 py-3 border-b border-gray-200">
-        <h2 className="text-xl font-bold tracking-tight">So, Reach Out!</h2>
-      </div>
-      <div className="px-16 py-10 pb-24">
-        <div className="font-sans text-gray-600 mb-6">
+    <div id="contact" className="text-white">
+      <WaveTop />
+      <div className="bg-neutral-900 py-10 pb-24">
+        <div className="px-6 md:px-16 py-3 border-b border-white border-opacity-10 mb-6">
+          <h2 className="text-xl font-bold tracking-tight text-white">So, Reach Out!</h2>
+        </div>
+        <div className="font-sans text-gray-400 mb-6 px-6 md:px-16">
           Have an idea that needs a collaborator? Or just want to say hi? I&apos;m
           available across these platforms — pick your preference.
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-3 w-full">
-          {contactVia.map(renderBlock)}
+        <div className="px-6 md:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-3 w-full">
+            {contactVia.map(renderBlock)}
+          </div>
         </div>
       </div>
     </div>
