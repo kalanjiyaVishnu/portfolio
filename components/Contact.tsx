@@ -1,5 +1,8 @@
 import NextLink from 'next/link'
+import { FaDownload } from 'react-icons/fa'
 import { getSrcIcon, Link } from '../utils'
+
+const RESUME_PATH = '/resume/Kalanjiya Vishnu J — Resume.pdf'
 
 const contactVia: Link[] = [
   {
@@ -47,6 +50,17 @@ export const Contact = () => {
       </div>
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-3 w-full">
         {contactVia.map(renderBlock)}
+      </div>
+      <div className="mt-10 flex justify-end">
+        <a
+          href={RESUME_PATH}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-gray-500 hover:text-gray-900 transition-colors duration-150 border border-gray-300 rounded px-4 py-2"
+        >
+          <FaDownload className="w-3 h-3" />
+          Download Resume (PDF)
+        </a>
       </div>
     </div>
   )
