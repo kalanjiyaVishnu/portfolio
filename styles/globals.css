@@ -17,7 +17,38 @@
 html,
 body {
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  @apply bg-gray-100 p-0 m-0 text-gray-900 scroll-m-0 h-screen min-h-screen scroll-smooth;
+  @apply bg-gray-100 p-0 m-0 text-gray-900 scroll-m-0 min-h-screen scroll-smooth;
+}
+
+/* Scroll-snap: each top-level section snaps into view (proximity = not aggressive) */
+html {
+  scroll-snap-type: y proximity;
+}
+
+section[id],
+div[id="hero"],
+div[id="about"],
+div[id="skills"],
+div[id="projects"],
+div[id="what-do-i-do"],
+div[id="contact"] {
+  scroll-snap-align: start;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 a {
