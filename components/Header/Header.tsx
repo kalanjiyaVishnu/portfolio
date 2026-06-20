@@ -77,8 +77,7 @@ export function Header() {
         <li className={styles.mobileMenu}>
           <button
             className={styles.hamburger}
-            onClick={(e) => {
-              e.stopPropagation()
+            onClick={() => {
               setMenuOpen((prev) => !prev)
             }}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
