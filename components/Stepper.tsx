@@ -1,15 +1,16 @@
 import React from "react"
 
-export const Stepper: React.FC<{
-  timeLines: Array<{
-    title: string
-    description: string
-    date: string
-    tags?: string[]
-  }>
-}> = ({ timeLines }) => (
+type TimeLineItem = {
+  title: string
+  description: string
+  date: string
+  tags?: string[]
+  projects?: { summary: string; stack: string }[]
+}
+
+export const Stepper: React.FC<{ timeLines: TimeLineItem[] }> = ({ timeLines }) => (
   <div className="timeline-container">
-    {timeLines.map(({ date, description, title, tags }, idx) => (
+    {timeLines.map(({ date, description, title, tags, projects }, idx) => (
       <div
         className={`timeline ${idx == 0 && "active bg-white bg-opacity-5"}`}
         key={idx}
@@ -29,6 +30,22 @@ export const Stepper: React.FC<{
               </div>
             </div>
             <p className="timeline-body">{description}</p>
+
+            {projects && projects.length > 0 && (
+              <div className="mt-6 flex flex-col gap-4">
+                {projects.map(({ summary, stack }, pIdx) => (
+                  <div
+                    key={pIdx}
+                    className="border-l-2 border-teal-400 border-opacity-40 pl-4 py-1"
+                  >
+                    <p className="text-sm text-gray-300 leading-relaxed">{summary}</p>
+                    <p className="mt-1.5 text-[10px] uppercase tracking-widest text-gray-500 font-medium">
+                      {stack}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

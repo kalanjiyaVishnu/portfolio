@@ -5,6 +5,43 @@ import { FiExternalLink } from 'react-icons/fi'
 
 export const getTimeLines = () => [
   {
+    title: 'Senior Software Engineer',
+    description:
+      'Promoted at Casa Retail AI. Leading architecture decisions, shipping cross-cutting platform work, and raising the bar on system design, test coverage, and team velocity.',
+    date: '2026',
+    tags: ['Casa Retail AI'],
+    projects: [
+      {
+        summary: 'Distributed multi-tenant onboarding platform using Flowable BPM command-pattern orchestration for hybrid automated / human-approval workflows — cut merchant onboarding effort 90%.',
+        stack: 'Node.js · React · Flowable BPM · Jest · Mocha',
+      },
+      {
+        summary: 'Core multi-tenant backend services for a loyalty & promotions engine — bill processing, points earn/redeem, cohort segmentation, and campaign execution; extended ClickHouse OLAP pipelines and Elasticsearch indices for real-time analytics.',
+        stack: 'Node.js · TypeScript · Express · PostgreSQL · ClickHouse · Elasticsearch · Redis · Docker · Kubernetes',
+      },
+      {
+        summary: 'Multi-source event-streaming ingestion pipeline (Kafka topics, flat files, CDC) with schema-driven transformers and batched ClickHouse writes — processing millions of events/day at sub-second latency.',
+        stack: 'Apache Kafka · Node.js · ClickHouse · PostgreSQL',
+      },
+      {
+        summary: 'Full-stack embedded Shopify commerce app (Remix + Shopify GraphQL Admin API) bidirectionally syncing customer, catalog, and order data into the CRM; OAuth 2.0 / OIDC customer login via Keycloak.',
+        stack: 'Remix · TypeScript · Prisma · Shopify GraphQL Admin API · Keycloak (OIDC)',
+      },
+      {
+        summary: 'Serverless microservices (AWS Lambda + SQS + S3) automating AR template generation and deployment for a no-code AR platform — reduced deployment time 50%; 95% test coverage gated in CI/CD.',
+        stack: 'Node.js · AWS Lambda · S3 · SQS · GitHub Actions · Jest · Mocha',
+      },
+      {
+        summary: 'React 18 drag-and-drop e-bill configurator with runtime schema-driven layout and Zod validation — cut merchant configuration effort 70%; shipped 30+ MUI components to an internal Storybook, boosting team velocity 40%.',
+        stack: 'React 18 · TypeScript · react-hook-form · Zod · MUI · Storybook · Rollup',
+      },
+      {
+        summary: 'Webhook-driven lead-ingestion service capturing, validating, and routing Meta Ads leads in real time; integrated Meta Ads & Google Ads APIs into conversion dashboards for end-to-end marketing attribution.',
+        stack: 'Node.js · Meta Ads API · Google Ads API',
+      },
+    ],
+  },
+  {
     title: 'Software Engineer',
     description:
       'Joined Casa Retail AI as a full-stack engineer. Building production backend services, event-driven pipelines, and React frontends for a multi-tenant retail CRM SaaS. New environment, real scale, maturing fast.',
