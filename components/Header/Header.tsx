@@ -1,134 +1,93 @@
 import React, { useState, useEffect, useRef } from "react"
-import _ from "lodash"
-
-import {
-  FaBeer,
-  FaCoffee,
-  FaCogs,
-  FaPaperPlane,
-  FaBolt,
-  FaCaretRight,
-  FaCaretDown,
-  FaHome,
-} from "react-icons/fa"
 import Link from "next/link"
+import { FaBars, FaTimes } from "react-icons/fa"
 import styles from "./Header.module.css"
 
-const mobileTitles = [
-  { title: "#me", icon: <FaHome />, path: "#me" },
-  { title: "projects", icon: <FaBolt />, path: "projects" },
-  { title: "contact", icon: <FaPaperPlane />, path: "contact" },
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Things I've known", href: "#skills" },
+  { label: "Things I've built", href: "#projects" },
+  { label: "What I Do", href: "#what-do-i-do" },
+  { label: "Reach Out", href: "#contact" },
 ]
+
 export function Header() {
-  const [width, setwidth] = useState<number>(0)
+  const [visible, setVisible] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    window.addEventListener("resize", setWidthFromUi)
-    setWidthFromUi()
-    return () => window.removeEventListener("resize", setWidthFromUi)
+    const handleScroll = () => {
+      setVisible(window.scrollY > window.innerHeight * 0.75)
+    }
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    document.addEventListener("click", handleClickOutside)
+    handleScroll()
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      document.removeEventListener("click", handleClickOutside)
+    }
   }, [])
 
-  const setWidthFromUi = () =>
-    setwidth(
-      document.body.querySelector(`.${styles.navbar}`)?.clientWidth || 500
-    )
-
   return (
-    <Navbar>
-      {width > 600 && <NavItems />}
-      <NavItem icon={<FaCaretRight />} iconto={<FaCaretDown />} path={"/"}>
-        <Dropdown mobTitles={mobileTitles} wid={width} />
-      </NavItem>
-      {/* last - dropdown */}
-    </Navbar>
-  )
-}
-
-const Navbar: React.FC<{
-  children: React.ReactNode
-}> = (props) => {
-  return (
-    <nav className={styles.navbar}>
+    <nav
+      ref={navRef}
+      className={`${styles.navbar} ${visible ? styles.navbarVisible : styles.navbarHidden}`}
+      aria-hidden={!visible}
+    >
       <Link href="/" className={styles.brand}>
-        r1558
+        <span className={styles.brandMain}>Vishnu J</span>
+        <span className={styles.brandAlias}>r1558</span>
       </Link>
-      <ul className={styles.navbar_nav}>{props.children}</ul>
-    </nav>
-  )
-}
 
-const NavItem: React.FC<{
-  icon: React.ReactNode
-  iconto?: React.ReactNode
-  path: string
-  children?: React.ReactNode
-  text?: string
-}> = (props) => {
-  const [open, setopen] = useState(false)
-
-  return (
-    <li className={styles["nav-item"]}>
-      <a
-        href={props.path}
-        className={styles.icon}
-        onClick={(e) => {
-          setopen(!open)
-          return e.preventDefault()
-        }}
-      >
-        {props.iconto && open ? props.iconto : props.icon}
-      </a>
-
-      {open && props.children}
-    </li>
-  )
-}
-function NavItems() {
-  return (
-    <>
-      <NavItem icon="😎" path="#me" text="contact" />
-      <NavItem icon={<FaBolt />} path="/projects" text="projects" />
-      <NavItem icon={<FaBeer />} path="/contact-me" text="contact" />
-    </>
-  )
-}
-const Dropdown: React.FC<{
-  mobTitles: { title: string; icon: React.ReactNode }[]
-  wid: number
-  children?: React.ReactNode
-}> = ({ mobTitles: mob_title, wid }) => {
-  const DropdownItem = (props: {
-    text: string
-    left: React.ReactNode
-    right?: React.ReactNode
-  }) => {
-    return (
-      <Link href={"/" + props.text} className={styles.menuitems}>
-        <span className={styles.iconleft}>{props.left}</span>
-        {props.text}
-        <span className={styles.iconright}>{props.right} </span>
-      </Link>
-    )
-  }
-
-  const DropdownItemMobile = ({
-    mobileTitles,
-  }: {
-    mobileTitles: { title: string; icon: React.ReactNode }[]
-  }) => {
-    return (
-      <>
-        {_.map(mobileTitles, (x, idx) => (
-          <DropdownItem key={idx} text={x.title} left={x.icon} />
+      <ul className={styles.navbarNav}>
+        {navLinks.map(({ label, href }) => (
+          <li key={href} className={styles.desktopNavItem}>
+            <a
+              href={href}
+              className={styles.navLink}
+              onClick={() => setMenuOpen(false)}
+            >
+              {label}
+            </a>
+          </li>
         ))}
-      </>
-    )
-  }
-  return (
-    <div className={styles.dropdown}>
-      {wid <= 600 && <DropdownItemMobile mobileTitles={mobileTitles} />}
-      <DropdownItem text="buy me a coffee" left={<FaCoffee />} />
-      <DropdownItem text="setting" left={<FaCogs />} />
-    </div>
+
+        <li className={styles.mobileMenu}>
+          <button
+            className={styles.hamburger}
+            onClick={(e) => {
+              e.stopPropagation()
+              setMenuOpen((prev) => !prev)
+            }}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+          {menuOpen && (
+            <div className={styles.dropdown}>
+              {navLinks.map(({ label, href }) => (
+                <a
+                  key={href}
+                  href={href}
+                  className={styles.dropdownItem}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          )}
+        </li>
+      </ul>
+    </nav>
   )
 }
