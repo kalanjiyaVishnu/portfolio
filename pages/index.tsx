@@ -80,11 +80,11 @@ const Hero = () => (
       id="hero"
       className="w-4/5 m-auto h-full flex items-center justify-center z-10 relative"
     >
-      <div className="flex flex-col p-2 justify-center w-fit -mt-20 gap-4">
-        <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+      <div className="flex flex-col px-4 sm:p-2 justify-center w-full sm:w-fit -mt-16 sm:-mt-20 gap-3 sm:gap-4">
+        <p className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-500 font-medium">
           Full-stack Engineer
         </p>
-        <p className="text-2xl md:text-6xl font-medium leading-tight">
+        <p className="text-3xl sm:text-4xl md:text-6xl font-medium leading-tight">
           Developer,{' '}
           <span className="relative group inline-block">
             <span className="line-through opacity-30 decoration-gray-500">
@@ -95,10 +95,10 @@ const Hero = () => (
             </span>
           </span>
         </p>
-        <p className="text-sm font-normal text-gray-400">
+        <p className="text-xs sm:text-sm font-normal text-gray-400">
           — Chennai, India &middot; 3+ years in production
         </p>
-        <div className="mt-2">
+        <div className="mt-1 sm:mt-2">
           <a
             href="#about"
             className="btn-flip"
@@ -130,7 +130,7 @@ const TimeLine = () => (
 )
 
 const Rocket = () => (
-  <div className="absolute top-40 -left-64 xl:block xl:top-40 xl:-left-40 opacity-85 pointer-events-none select-none">
+  <div className="hidden xl:block absolute xl:top-40 xl:-left-40 opacity-85 pointer-events-none select-none">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="#222"
