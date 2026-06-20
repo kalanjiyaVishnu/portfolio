@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Skills } from '../components/Skills'
 import { Stepper } from '../components/Stepper'
 import { Title } from '../components/Title'
@@ -175,22 +175,22 @@ const Slider = ({ images }: { id: number; images: string[] }) => {
   const [isIncrement, setIsIncrement] = useState(true)
   const sliderRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const interval = setInterval(moveToNextSlide, 2000)
-    return () => clearInterval(interval)
-  }, [id])
-
   const getWidth = () =>
     sliderRef.current ? sliderRef.current.clientWidth : 100
 
-  const moveToNextSlide = () => {
+  const moveToNextSlide = useCallback(() => {
     if (id === images.length - 2) {
       setIsIncrement(false)
     } else if (id === 0) {
       setIsIncrement(true)
     }
     setId(isIncrement ? id + 1 : id - 1)
-  }
+  }, [id, images.length, isIncrement])
+
+  useEffect(() => {
+    const interval = setInterval(moveToNextSlide, 2000)
+    return () => clearInterval(interval)
+  }, [moveToNextSlide])
 
   return (
     <div
