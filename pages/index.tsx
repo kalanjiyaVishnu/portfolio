@@ -13,6 +13,7 @@ import { Content } from '../components/Content'
 import { content } from '../constants'
 import { Contact } from '../components/Contact'
 import { FaDownload } from 'react-icons/fa'
+import { WaveTop, WaveBottom } from '../components/Wave'
 
 const RESUME_PATH = '/resume/Kalanjiya Vishnu J — Resume.pdf'
 
@@ -21,11 +22,19 @@ export default function Home() {
     <div>
       <FloatingResume />
       <Hero />
-      <Me />
-      <Skills />
-      <Projects />
-      <Content {...content['SectionWhatDoIDO']} />
-      <Contact />
+      <div className="relative">
+        {/* Sticky 'Vishnu J' sub-header */}
+        <div className="sticky top-0 z-20 bg-neutral-900 px-6 md:px-16 py-3 border-b border-white border-opacity-10 w-full text-white">
+          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-end gap-1">
+            <p className="text-xl font-bold">Vishnu J</p>
+          </div>
+        </div>
+        <Me />
+        <Skills />
+        <Projects />
+        <Content {...content['SectionWhatDoIDO']} />
+        <Contact />
+      </div>
     </div>
   )
 }
@@ -102,24 +111,18 @@ const Hero = () => (
 )
 
 const Me = () => (
-  <div id="about" className="bg-neutral-900 border-t-2 border-white text-white pt-14">
-    <div className="sticky top-0 z-10 bg-neutral-900 px-16 py-3 border-b border-white border-opacity-10">
-      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-end gap-1">
-        <p className="text-xl font-bold">Vishnu J</p>
-        <p className="text-xs font-normal text-gray-500 sm:ml-3">
-          Full-stack engineer · Chennai
-        </p>
-      </div>
-    </div>
-    <div className="px-16 py-10">
+  <div id="about" className="text-white">
+    <WaveTop />
+    <div className="bg-neutral-900 px-6 md:px-16 py-10">
       <TimeLine />
     </div>
+    <WaveBottom />
   </div>
 )
 
 const TimeLine = () => (
   <>
-    <div className="text-sm rounded-sm md:ml-2 mt-3 py-2 px-10 text-center sm:text-left border-l-2 border-r-2 sm:border-r-0 border-gray-200">
+    <div className="text-sm rounded-sm md:ml-2 mt-3 py-2 px-6 md:px-10 text-center sm:text-left border-l-2 border-r-2 sm:border-r-0 border-gray-200">
       A few things that happened along the way...
     </div>
     <Stepper timeLines={getTimeLines()} />
@@ -140,13 +143,15 @@ const Rocket = () => (
 )
 
 const Projects = () => (
-  <div id="projects" className="bg-neutral-900 border-t text-white pt-14">
-    <div className="sticky top-0 z-10 bg-neutral-900 px-16 py-3 border-b border-white border-opacity-10">
-      <h2 className="text-xl font-bold">Things I&apos;ve built</h2>
-    </div>
-    <div className="px-16 py-10">
+  <div id="projects" className="text-white">
+    <WaveTop />
+    <div className="bg-neutral-900 px-6 md:px-16 py-10">
+      <div className="px-6 md:px-16 py-3 border-b border-white border-opacity-10 mb-6">
+        <h2 className="text-xl font-bold">Things I&apos;ve built</h2>
+      </div>
       <ProjectsContainer />
     </div>
+    <WaveBottom />
   </div>
 )
 

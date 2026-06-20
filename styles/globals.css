@@ -35,6 +35,14 @@ div[id="contact"] {
   scroll-snap-align: start;
 }
 
+div[id="about"],
+div[id="skills"],
+div[id="projects"],
+div[id="what-do-i-do"],
+div[id="contact"] {
+  scroll-margin-top: 53px;
+}
+
 /* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
   html {
