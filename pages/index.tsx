@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Skills } from '../components/Skills'
 import { Stepper } from '../components/Stepper'
-import { Title } from '../components/Title'
 import {
   getProjectImages,
   getProjects,
@@ -103,16 +102,16 @@ const Hero = () => (
 )
 
 const Me = () => (
-  <div id="about" className="bg-neutral-900 border-t-2 border-white text-white">
-    <div className="sticky top-[60px] z-10 bg-neutral-900 px-16 pt-16 pb-4">
-      <Title title="Vishnu J" float="right">
-        <p className="text-xs md:text-sm font-normal flex-nowrap text-gray-400">
-          Full-stack engineer. Ships production backend and frontend systems.
-          Based in Chennai.
+  <div id="about" className="bg-neutral-900 border-t-2 border-white text-white pt-14">
+    <div className="sticky top-0 z-10 bg-neutral-900 px-16 py-3 border-b border-white border-opacity-10">
+      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-end gap-1">
+        <p className="text-xl font-bold">Vishnu J</p>
+        <p className="text-xs font-normal text-gray-500 sm:ml-3">
+          Full-stack engineer · Chennai
         </p>
-      </Title>
+      </div>
     </div>
-    <div className="px-16 pb-16">
+    <div className="px-16 py-10">
       <TimeLine />
     </div>
   </div>
@@ -141,11 +140,11 @@ const Rocket = () => (
 )
 
 const Projects = () => (
-  <div id="projects" className="bg-neutral-900 border-t text-white">
-    <div className="sticky top-[60px] z-10 bg-neutral-900 px-16 pt-16 pb-4">
-      <Title title="Things I've built" float="left" />
+  <div id="projects" className="bg-neutral-900 border-t text-white pt-14">
+    <div className="sticky top-0 z-10 bg-neutral-900 px-16 py-3 border-b border-white border-opacity-10">
+      <h2 className="text-xl font-bold">Things I&apos;ve built</h2>
     </div>
-    <div className="px-16 pb-16">
+    <div className="px-16 py-10">
       <ProjectsContainer />
     </div>
   </div>

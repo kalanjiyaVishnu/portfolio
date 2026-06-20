@@ -21,51 +21,15 @@ const navLinks = [
 
 export function Header() {
   const [visible, setVisible] = useState(true)
-  const [currentSection, setCurrentSection] = useState("")
   const [menuOpen, setMenuOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const updateNav = () => {
-      const scrollY = window.scrollY
       const aboutEl = document.getElementById("about")
-      const skillsEl = document.getElementById("skills")
-
-      if (!aboutEl || !skillsEl) {
-        setVisible(true)
-        return
-      }
-
-      const aboutTop = aboutEl.offsetTop
-      const skillsTop = skillsEl.offsetTop
-
-      // Hidden only during the About/Me dark section
-      const inAbout = scrollY >= aboutTop - 80 && scrollY < skillsTop - 80
-      setVisible(!inAbout)
-
-      // Current section title — only when past the about section
-      if (inAbout || scrollY < aboutTop - 80) {
-        setCurrentSection("")
-        return
-      }
-
-      // Bottom-up: find the last section heading crossed
-      const sections = [
-        { id: "contact", label: "Reach Out" },
-        { id: "what-do-i-do", label: "What I Do" },
-        { id: "projects", label: "Things I've built" },
-        { id: "skills", label: "Things I've known" },
-      ]
-
-      for (const { id, label } of sections) {
-        const el = document.getElementById(id)
-        if (el && scrollY >= el.offsetTop - 80) {
-          setCurrentSection(label)
-          return
-        }
-      }
-
-      setCurrentSection("")
+      // Show only while the hero is in view (before the About section starts)
+      const threshold = aboutEl ? aboutEl.offsetTop - 80 : window.innerHeight * 0.8
+      setVisible(window.scrollY < threshold)
     }
 
     const handleClickOutside = (e: MouseEvent) => {
@@ -94,14 +58,6 @@ export function Header() {
         <span className={styles.brandMain}>Vishnu J</span>
         <span className={styles.brandAlias}>r1558</span>
       </Link>
-
-      {/* Section title — centered, fades in as each heading is crossed */}
-      <div
-        key={currentSection}
-        className={`${styles.sectionTitle} ${currentSection ? styles.sectionTitleVisible : ""}`}
-      >
-        {currentSection}
-      </div>
 
       <ul className={styles.navbarNav}>
         {navLinks.map(({ label, href, icon }) => (

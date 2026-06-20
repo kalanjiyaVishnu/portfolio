@@ -39,14 +39,11 @@ export const Contact = () => {
   )
 
   return (
-    <div id="contact">
-      <div className="sticky top-[60px] z-10 bg-gray-100 px-16 pt-16 pb-4">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl sm:items-end sm:text-end">
-          So, Reach Out!
-        </h2>
-        <hr className="mt-4" />
+    <div id="contact" className="pt-14">
+      <div className="sticky top-0 z-10 bg-gray-100 px-16 py-3 border-b border-gray-200">
+        <h2 className="text-xl font-bold tracking-tight">So, Reach Out!</h2>
       </div>
-      <div className="px-16 pb-24 pt-6">
+      <div className="px-16 py-10 pb-24">
         <div className="font-sans text-gray-600 mb-6">
           Have an idea that needs a collaborator? Or just want to say hi? I&apos;m
           available across these platforms — pick your preference.
